@@ -1,0 +1,52 @@
+name: C/C++ CI
+
+on: [push]
+
+jobs:
+  build:
+    name: Test Ubuntu
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: cmake
+      run: cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -B./build
+    - name: build
+      run: cmake --build ./build --config Debug --target all
+    - name: test
+      run: ./build/bin/myApp | tee ./build/bin/UTestResult.txt
+    - name: artifact_UTest
+      uses: actions/upload-artifact@v1
+      with:
+        name: UTestResult
+        path: ./build/bin/UTestResult.txt
+    - name: artifact_binary
+      uses: actions/upload-artifact@v1
+      with:
+        name: Binary
+        path: ./build/bin/myApp
+
+  build2:
+    name: Test Windows
+
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: cmake
+      run: cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -Bbuild
+    - name: build
+      run: cmake --build build --config Debug
+    - name: test
+      run: build//bin//Debug//myApp > build//bin//UTestResult.txt
+    - name: artifact_UTest
+      uses: actions/upload-artifact@v1
+      with:
+        name: UTestResultWin
+        path: build//bin//UTestResult.txt
+    - name: artifact_binary
+      uses: actions/upload-artifact@v1
+      with:
+        name: BinaryWin
+        path: build//bin//Debug//myApp.exe
