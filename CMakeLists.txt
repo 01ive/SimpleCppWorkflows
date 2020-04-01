@@ -57,7 +57,7 @@ target_link_libraries(myApp gtest_main)
 
 # Manage tests
 enable_testing()
-add_test(NAME my_test COMMAND myApp)
+add_test(NAME my_test COMMAND myApp --gtest_output=xml)
 
 # specify the C++ standard
 set_target_properties(myApp
