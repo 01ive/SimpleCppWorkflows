@@ -16,6 +16,8 @@ jobs:
       run: cmake --build ./build --config Debug --target all
     - name: test
       run: ./build/bin/myApp | tee ./build/bin/UTestResult.txt
+    - name: coverage
+      run: cmake --build ./build --config Debug --target myCoverage
     - name: artifact_UTest
       uses: actions/upload-artifact@v1
       with:
@@ -26,6 +28,11 @@ jobs:
       with:
         name: Binary
         path: ./build/bin/myApp
+    - name: artifact_coverage
+      uses: actions/upload-artifact@v1
+      with:
+        name: html_coverage
+        path: build//html_coverage
 
   build2:
     name: Test Windows
@@ -40,6 +47,8 @@ jobs:
       run: cmake --build build --config Debug
     - name: test
       run: build//bin//Debug//myApp > build//bin//UTestResult.txt
+    - name: coverage
+      run: cmake --build ./build --config Debug --target myCoverage
     - name: artifact_UTest
       uses: actions/upload-artifact@v1
       with:
@@ -50,3 +59,8 @@ jobs:
       with:
         name: BinaryWin
         path: build//bin//Debug//myApp.exe
+    - name: artifact_coverage
+      uses: actions/upload-artifact@v1
+      with:
+        name: html_coverage
+        path: build//html_coverage
