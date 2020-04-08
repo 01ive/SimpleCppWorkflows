@@ -1,0 +1,1 @@
+C:\\Users\\olive\\AppData\\Local\\Programs\\Git\\git-bash.exe %~dp0\\lcov.sh %1%
