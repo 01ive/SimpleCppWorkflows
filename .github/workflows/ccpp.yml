@@ -18,6 +18,7 @@ jobs:
       run: ./build/bin/myApp | tee ./build/bin/UTestResult.txt
     - name: coverage
       run: |
+        sudo apt-get install --no-install-recommends -q -y lcov
         cd build
         lcov --capture --directory CMakeFiles//myApp.dir --output-file coverage.info
         genhtml coverage.info --output-directory html_coverage
