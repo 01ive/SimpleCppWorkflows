@@ -19,9 +19,7 @@ jobs:
     - name: coverage
       run: |
         sudo apt-get install --no-install-recommends -q -y lcov
-        cd build
-        lcov --capture --directory CMakeFiles//myApp.dir --output-file coverage.info
-        genhtml coverage.info --output-directory html_coverage
+        cmake --build ./build --config Debug --target myCoverage
     - name: artifact_UTest
       uses: actions/upload-artifact@v1
       with:

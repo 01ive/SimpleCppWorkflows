@@ -74,7 +74,7 @@ target_link_options(myApp PUBLIC "-g" "-fprofile-arcs" "-ftest-coverage")
 
 if (UNIX)
   message(STATUS "Running on Linux")
-  add_custom_target(myCoverage ${CMAKE_SOURCE_DIR}//lcov.sh ${CMAKE_BINARY_DIR}//CMakeFiles//myApp.dir)
+  add_custom_target(myCoverage bash ${CMAKE_SOURCE_DIR}//lcov.sh ${CMAKE_BINARY_DIR}//CMakeFiles//myApp.dir)
 elseif(WIN32)
   message(STATUS "Running on Windows")
   add_custom_target(myCoverage ${CMAKE_SOURCE_DIR}//lcov.bat ${CMAKE_BINARY_DIR}//CMakeFiles//myApp.dir)
