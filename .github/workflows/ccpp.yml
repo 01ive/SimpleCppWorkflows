@@ -19,8 +19,6 @@ jobs:
     - name: coverage
       run: |
         sudo apt-get install --no-install-recommends -q -y lcov
-        ls -l
-        export VERBOSE=1
         cmake --build ./build --config Debug --target myCoverage
     - name: artifact_UTest
       uses: actions/upload-artifact@v1
