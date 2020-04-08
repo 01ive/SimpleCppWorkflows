@@ -46,6 +46,21 @@
         },
         {
             "type": "shell",
+            "label": "my coverage",
+            "command": "mingw32-make.exe",
+            "args": [
+                "myCoverage"
+            ],
+            "options": {
+                "cwd": "${fileDirname}\\build"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "none"
+        },
+        {
+            "type": "shell",
             "label": "my clean",
             "command": "mingw32-make.exe",
             "args": [
