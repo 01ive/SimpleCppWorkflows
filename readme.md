@@ -2,7 +2,7 @@
 This project propose a very simple example for C++ developers. It implements a GitHub *workflows* that run Google tests on Windows and Ubuntu platforms.
 
 GitHub workflows generate artifacts containing:
-* Ubuntu binary and Googletest results
+* Ubuntu binary, Googletest results and code coverage analysis
 * Windows binary and Googletest results
 
 ------
@@ -13,6 +13,7 @@ Files:
 - *CMakeList.txt.in* Googletest CMake file
 - *CMakeList.txt* CMake file (including MinGW set-up)   
 - *myApp.cpp* Simple example file
+- lcov.bat and lcov.sh are scripts used to generate html coverage repport
 
 ------
 
