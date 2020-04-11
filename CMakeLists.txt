@@ -59,7 +59,7 @@ target_link_libraries(myApp gtest_main)
 enable_testing()
 add_test(NAME my_test COMMAND myApp --gtest_output=xml)
 
-# specify the C++ standard
+# Specify the C++ standard
 set_target_properties(myApp
     PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
@@ -69,9 +69,11 @@ set_target_properties(myApp
     CXX_STANDARD_REQUIRED True
 )
 
+# Add compile and link options to generate coverage data
 target_compile_options(myApp PUBLIC "-g" "-fprofile-arcs" "-ftest-coverage")
 target_link_options(myApp PUBLIC "-g" "-fprofile-arcs" "-ftest-coverage")
 
+# Create custom cmake target to generate html coverage repport
 if (UNIX)
   message(STATUS "Running on Linux")
   add_custom_target(myCoverage bash ${CMAKE_SOURCE_DIR}//lcov.sh ${CMAKE_BINARY_DIR}//CMakeFiles//myApp.dir)
