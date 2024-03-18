@@ -10,6 +10,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
+    - name: clone_googletest
+      run: git clone https://github.com/google/googletest.git ./googletest
     - name: cmake
       run: cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -B./build
     - name: build
@@ -43,6 +45,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
+    - name: clone_googletest
+      run: git clone https://github.com/google/googletest.git ./googletest
     - name: cmake
       run: cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -Bbuild
     - name: build
